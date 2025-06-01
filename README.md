@@ -1,6 +1,6 @@
 # Gemini SDK: Architecting AGI's Constitution
 
-**The foundational SDK for Gemini Protocol™: Architecting the linguistic and operational foundation of Artificial General Intelligence (AGI).**
+**The foundational SDK for Gemini™ Protocol: Architecting the linguistic and operational foundation of Artificial General Intelligence (AGI).**
 
 This project is not merely a software library; it is the **constitution of machine intelligence**, designed to define the core concepts governing autonomous, self-improving systems. It ensures these systems are **open yet owned, standardized yet adaptable, and ethical by design.**
 
