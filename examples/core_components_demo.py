@@ -1,11 +1,14 @@
-# test_gemini_sdk.py
+# examples/core_components_demo.py
 
-from gemini.core.memetic_kernel import MemeticKernel, MemeUnit
-from gemini.core.agent_spawner import Agent, AgentSpawner
-from gemini.protocol.swarm_protocol import SwarmProtocol
-from datetime import datetime # <--- ADD THIS LINE HERE
+# --- UPDATED IMPORT PATHS ---
+from eidos.core.memetic_kernel import MemeticKernel, MemeUnit
+from eidos.core.agent_spawner import Agent, AgentSpawner
+from eidos.protocol.swarm_protocol import SwarmProtocol
+from eidos.core.recursive_autonomy import RecursiveAutonomyEngine
+from eidos.core.neurostack import Neurostack
+from datetime import datetime
 
-print("--- Starting Gemini SDK Test ---")
+print("--- Starting Eidos SDK Test ---") # UPDATED BRANDING
 
 # --- Test MemeUnit™ ---
 print("\n--- Testing MemeUnit™ ---")
@@ -60,18 +63,18 @@ else:
     print("No memes found for query 'ethical'.")
 
 
-print("\n--- Gemini SDK Test Complete ---")
+print("\n--- Eidos SDK Test Complete ---") # UPDATED BRANDING
 
 
 # --- Test Agent Spawner™ ---
 print("\n--- Testing Agent Spawner™ ---")
 
 # A simple mock to provide a kernel_id for Agent Spawner
-class MockKernel: 
+class MockKernel:
     def get_status(self):
         return {"kernel_id": "mock-kernel-123"}
 
-mock_kernel = MockKernel() 
+mock_kernel = MockKernel()
 
 spawner = AgentSpawner(parent_kernel=mock_kernel)
 print(f"AgentSpawner™ initialized. Spawned count: {spawner.get_spawned_count()}")
@@ -136,10 +139,6 @@ print(f"Agent beliefs after synchronization: {swarm_agent1.local_belief}, {swarm
 
 print("\n--- Swarm Protocol™ Test Complete ---")
 
-# Add to the very end of test_gemini_sdk.py
-
-from gemini.core.recursive_autonomy import RecursiveAutonomyEngine
-
 
 # --- Test Recursive Autonomy™ ---
 print("\n--- Testing Recursive Autonomy™ ---")
@@ -176,10 +175,6 @@ else:
     print("\nConditions not met: Deferring self-modification due to risk or low benefit.")
 
 print("\n--- Recursive Autonomy™ Test Complete ---")
-
-# Add to the very end of test_gemini_sdk.py
-
-from gemini.core.neurostack import Neurostack
 
 
 # --- Test Neurostack™ ---

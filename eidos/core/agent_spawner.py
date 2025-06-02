@@ -1,12 +1,15 @@
-# gemini/core/agent_spawner.py
+# eidos/core/agent_spawner.py <-- Note the conceptual path change
 
 import uuid
 from datetime import datetime
-from typing import Any
+from typing import Any, Dict, List
+
+# --- UPDATED IMPORT PATH ---
+from eidos.core.memetic_kernel import MemeticKernel # Import MemeticKernel for parent_kernel reference
 
 class Agent:
     """
-    Represents an autonomous agent spawned within the Gemini Protocol™.
+    Represents an autonomous agent spawned within the Eidos Protocol™.
     Agents possess identity, directives, and potentially their own Memetic Kernel™.
     """
     def __init__(self, name=None, directives=None, parent_id=None, initial_memes=None):
@@ -15,13 +18,12 @@ class Agent:
         self.parent_id = parent_id
         self.spawn_time = datetime.now()
         self.directives = directives if directives is not None else []
-        
-        self.status = "spawned" # <--- ENSURE THIS LINE IS PRESENT AND UNCOMMENTED
+        self.status = "spawned"
 
-        self.local_belief = None 
-        if initial_memes: 
+        self.local_belief = None
+        if initial_memes:
             self.local_memes = initial_memes
-            self.local_belief = initial_memes[0] if initial_memes else None 
+            self.local_belief = initial_memes[0] if initial_memes else None
         else:
             self.local_memes = []
 
@@ -55,25 +57,28 @@ class Agent:
 
 class AgentSpawner:
     """
-    The Agent Spawner™ for the Gemini Protocol™.
+    The Agent Spawner™ for the Eidos Protocol™.
     Enables dynamic creation, deployment, and initial orchestration of autonomous agents.
     """
-    def __init__(self, parent_kernel=None):
-        self.spawned_agents = []
+    def __init__(self, parent_kernel: MemeticKernel = None): # Type hint added for clarity
+        self.spawned_agents: List[Agent] = []
         self.parent_kernel = parent_kernel # Reference to a global Memetic Kernel™ if applicable
 
-    def spawn_agent(self, name=None, directives=None, initial_memes=None):
+    def spawn_agent(self, name: str = None, directives: List[str] = None, initial_memes: List[Any] = None) -> Agent:
         """
         Spawns a new autonomous agent™ instance.
-        This method embodies the Agent Spawning™ process for Gemini Protocol™.
+        This method embodies the Agent Spawning™ process for Eidos Protocol™.
         """
+        # Ensure kernel ID is available if parent_kernel is provided
+        parent_id_str = self.parent_kernel.get_status().get('kernel_id') if self.parent_kernel and hasattr(self.parent_kernel, 'get_status') else "N/A"
+
         new_agent = Agent(name=name, directives=directives, initial_memes=initial_memes,
-                          parent_id=self.parent_kernel.get_status().get('kernel_id') if self.parent_kernel else "N/A")
+                          parent_id=parent_id_str)
         self.spawned_agents.append(new_agent)
         print(f"AgentSpawner™: Successfully spawned Agent '{new_agent.name}' with ID: {new_agent.id[:8]}")
         return new_agent
 
-    def orchestrate_agents(self, agents_to_orchestrate):
+    def orchestrate_agents(self, agents_to_orchestrate: List[Agent]):
         """
         Placeholder for orchestrating a group of agents.
         This implements a part of the Swarm Protocol™ logic.
@@ -89,6 +94,6 @@ class AgentSpawner:
             else:
                 agent.execute_directive("Commencing general operations.")
 
-    def get_spawned_count(self):
+    def get_spawned_count(self) -> int:
         """Returns the total number of agents spawned by this spawner."""
         return len(self.spawned_agents)

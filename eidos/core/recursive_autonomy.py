@@ -1,17 +1,16 @@
-# gemini/core/recursive_autonomy.py
+# eidos/core/recursive_autonomy.py <-- Note the conceptual path change
 
 from typing import Any, Dict, List
 from datetime import datetime
-import random # <--- ADD THIS LINE HERE
+import random
 
-# For now, we assume Agent and MemeticKernel are accessible
-# In a full SDK, these would be proper imports if needed directly
-# from .memetic_kernel import MemeticKernel, MemeUnit
-# from .agent_spawner import Agent
+# Assuming MemeticKernel and Agent are accessible or will be passed
+# from eidos.core.memetic_kernel import MemeticKernel # Example import if needed later
+# from eidos.core.agent_spawner import Agent # Example import if needed later
 
 class RecursiveAutonomyEngine:
     """
-    The Recursive Autonomy™ engine for the Gemini Protocol™.
+    The Recursive Autonomy™ engine for the Eidos Protocol™.
     Enables AI agents to recursively self-evolve, upgrade, and make decisions across timelines.
     This is your time horizon weapon for advanced AGI.
     """
@@ -71,7 +70,7 @@ class RecursiveAutonomyEngine:
         This embodies the 'decisions across timelines' aspect of Recursive Autonomy™.
         """
         print(f"RecursiveAutonomyEngine™: Simulating impact of '{proposed_modification['details']}' over {simulation_horizon_years} years...")
-        
+
         # This is a very simplified simulation
         sim_outcome = {
             "predicted_long_term_performance_gain": random.uniform(0.01, 0.15) if proposed_modification["type"] != "none" else 0,
@@ -82,7 +81,7 @@ class RecursiveAutonomyEngine:
         if proposed_modification["type"] == "directive_refinement":
             sim_outcome["predicted_alignment_stability"] *= 1.05
             sim_outcome["risk_of_unforeseen_consequences"] *= 0.8
-        
+
         print(f"RecursiveAutonomyEngine™: Simulation complete. Predicted gain: {sim_outcome['predicted_long_term_performance_gain']:.2f}, Risk: {sim_outcome['risk_of_unforeseen_consequences']:.2f}")
         self.evolution_log.append({
             "timestamp": datetime.now().isoformat(),

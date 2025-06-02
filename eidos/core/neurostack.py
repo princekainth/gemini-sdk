@@ -1,4 +1,4 @@
-# gemini/core/neurostack.py
+# eidos/core/neurostack.py <-- Note the conceptual path change
 
 from typing import Any, Dict, List
 import random
@@ -8,7 +8,7 @@ class Neurostack:
     """
     The Neurostack™: The neural simulation layer or cognitive stack within synthetic minds.
     This provides leverage over the neuro-symbolic war, bridging computational and cognitive processes.
-    It's a core component of the Gemini Protocol™.
+    It's a core component of the Eidos Protocol™.
     """
     def __init__(self, agent_id: str, configuration: Dict[str, Any] = None):
         self.agent_id = agent_id

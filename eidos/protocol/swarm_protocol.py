@@ -1,20 +1,17 @@
-# gemini/protocol/swarm_protocol.py
+# eidos/protocol/swarm_protocol.py <-- Note the conceptual path change
 
 from typing import List, Dict, Any, Tuple
 import random
 import time
 from datetime import datetime
 
-# --- IMPORTANT: We are now importing the real Agent class ---
-from gemini.core.agent_spawner import Agent # Make sure this import is correct
-
-# --- Removed: The mock Agent class was here, it's now removed ---
-# You should no longer see 'class Agent:' defined in this file.
+# --- UPDATED IMPORT PATH ---
+from eidos.core.agent_spawner import Agent 
 
 
 class SwarmProtocol:
     """
-    The Swarm Protocol™ for the Gemini Protocol™.
+    The Swarm Protocol™ for the Eidos Protocol™.
     Manages coordination, consensus, and synchronization among a group of agents.
     This is your protocol-level crown jewel for decentralized AGI governance.
     """
@@ -37,7 +34,7 @@ class SwarmProtocol:
         print(f"SwarmProtocol™: Agent {sender_id[:4]} broadcasting '{message_type}'...")
         for agent in self.agents:
             if agent.id != sender_id: # Agent doesn't send message to itself
-                agent.receive_message(message)
+                agent.receive_message(message) # Assuming agent has receive_message method
 
     def achieve_consensus(self, topic: str, method: str = "majority_vote") -> Tuple[Any, bool]:
         """
@@ -49,8 +46,7 @@ class SwarmProtocol:
             return None, False
 
         # Ensure agents have a local_belief attribute for consensus.
-        # In a real system, this would come from their Memetic Kernel™ or current state.
-        beliefs = [agent.local_belief for agent in self.agents if agent.local_belief is not None]
+        beliefs = [agent.express_belief() for agent in self.agents if agent.express_belief() is not None]
 
         if not beliefs:
             print("SwarmProtocol™: No beliefs expressed for consensus.")
@@ -65,7 +61,7 @@ class SwarmProtocol:
             belief_counts = Counter(beliefs)
             # Find the most common belief
             most_common_belief, count = belief_counts.most_common(1)[0]
-            
+
             # Simple majority (more than 50%)
             if count > len(self.agents) / 2:
                 consensus_reached = True
@@ -75,7 +71,7 @@ class SwarmProtocol:
             if all(b == beliefs[0] for b in beliefs):
                 consensus_reached = True
                 agreed_value = beliefs[0]
-            
+
         # Record consensus attempt
         self.consensus_history.append({
             "topic": topic,
